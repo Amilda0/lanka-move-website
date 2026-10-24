@@ -223,4 +223,63 @@
 </script>
 
 </body>
-</html>
+</html> /* Mobile responsive improvements */
+@media screen and (max-width: 600px) {
+  header {
+    padding: 15px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  nav a {
+    margin-left: 0;
+    font-size: 14px;
+  }
+
+  .hero {
+    padding: 40px 15px 28px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .services {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+
+  .service {
+    padding: 18px;
+  }
+
+  .booking {
+    width: calc(100% - 30px);
+    margin: 20px auto;
+    padding: 20px 16px;
+  }
+
+  input, select, button {
+    font-size: 16px;
+    min-height: 48px;
+  }
+
+  footer {
+    padding: 20px 12px;
+    font-size: 14px;
+  }
+}
