@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lanka Move | Taxi & Delivery</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f8ff;
+      color: #172b4d;
+    }
+
+    header {
+      background: #0755c9;
+      color: white;
+      padding: 18px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo { font-size: 27px; font-weight: bold; }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 18px;
+      font-weight: bold;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 55px 18px 35px;
+      background: linear-gradient(135deg, #0755c9, #1688f8);
+      color: white;
+    }
+
+    .hero h1 { font-size: 38px; margin: 0 0 12px; }
+    .hero p { font-size: 17px; line-height: 1.6; }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      max-width: 900px;
+      margin: 28px auto;
+      padding: 0 18px;
+    }
+
+    .service {
+      background: white;
+      padding: 22px 15px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 3px 12px #00000010;
+      border: 2px solid transparent;
+      cursor: pointer;
+    }
+
+    .service.selected { border-color: #0755c9; }
+    .service .icon { font-size: 38px; }
+    .service h3 { margin-bottom: 6px; }
+
+    .booking {
+      background: white;
+      max-width: 520px;
+      margin: 30px auto;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 3px 15px #00000012;
+    }
+
+    .booking h2 { text-align: center; }
+
+    label {
+      display: block;
+      margin-top: 14px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px;
+      margin-top: 7px;
+      border: 1px solid #ccd6e5;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
+      background: #0755c9;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover { background: #0644a3; }
+
+    .notice {
+      background: #fff7df;
+      color: #654b00;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      margin-top: 35px;
+      background: #092b5a;
+      color: white;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 29px; }
+      nav a { margin-left: 8px; font-size: 14px; }
+      .logo { font-size: 23px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🚕 Lanka Move</div>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#booking">Book Now</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Your Journey, Our Priority!</h1>
+  <p>Easy rides and reliable delivery across Sri Lanka.</p>
+</section>
+
+<section id="services" class="services">
+  <div class="service selected" onclick="chooseService('Bike Taxi', this)">
+    <div class="icon">🏍️</div>
+    <h3>Bike Taxi</h3>
+    <p>Quick and convenient rides</p>
+  </div>
+
+  <div class="service" onclick="chooseService('Car Taxi', this)">
+    <div class="icon">🚗</div>
+    <h3>Car Taxi</h3>
+    <p>Comfortable journeys</p>
+  </div>
+
+  <div class="service" onclick="chooseService('Delivery', this)">
+    <div class="icon">📦</div>
+    <h3>Delivery</h3>
+    <p>Send items with ease</p>
+  </div>
+</section>
+
+<section id="booking" class="booking">
+  <h2>Book Your Service</h2>
+
+  <div class="notice">
+    This is an initial website demo. Booking requests will become active after we connect the database and driver system.
+  </div>
+
+  <form onsubmit="showDemoMessage(event)">
+    <label for="service">Select Service</label>
+    <select id="service" required>
+      <option>Bike Taxi</option>
+      <option>Car Taxi</option>
+      <option>Delivery</option>
+    </select>
+
+    <label for="pickup">Pickup Location</label>
+    <input id="pickup" type="text" placeholder="Enter pickup location" required>
+
+    <label for="destination">Destination</label>
+    <input id="destination" type="text" placeholder="Enter destination" required>
+
+    <label for="phone">Phone Number</label>
+    <input id="phone" type="tel" placeholder="+94 77 123 4567"
+           pattern="^\+?[0-9 ]{9,15}$" required>
+
+    <button type="submit">Request a Ride</button>
+    <p id="message" role="status"></p>
+  </form>
+</section>
+
+<footer>
+  <p>© 2026 Lanka Move | Taxi & Delivery Service</p>
+  <p>Sri Lanka 🇱🇰</p>
+</footer>
+
+<script>
+  function chooseService(name, element) {
+    document.querySelectorAll('.service').forEach(function(card) {
+      card.classList.remove('selected');
+    });
+
+    element.classList.add('selected');
+    document.getElementById('service').value = name;
+    document.getElementById('booking').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+
+  function showDemoMessage(event) {
+    event.preventDefault();
+    document.getElementById('message').textContent =
+      'Demo only: booking is not active yet. We will connect the booking system in a later step.';
+  }
+</script>
+
+</body>
+</html>
